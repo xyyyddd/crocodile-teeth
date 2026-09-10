@@ -296,20 +296,20 @@ strong{font-weight:600;color:var(--charcoal);}
   .game-section{padding:0 !important;}
   .game-card{
     border-radius:0;border-left:0;border-right:0;
-    padding:8px 6px 8px;
+    padding:8px 0 8px;
   }
-  .game-toolbar{gap:8px;margin-bottom:8px;padding:0 2px;}
+  .game-toolbar{gap:8px;margin-bottom:8px;padding:0 8px;}
   .seg{padding:3px;}
   .seg button{padding:6px 10px;font-size:13px;}
   #restartBtn{padding:8px 14px;font-size:13px;}
 
   /* 数据条更紧凑 */
-  .hud{gap:8px;margin-bottom:8px;padding:0 2px;}
+  .hud{gap:8px;margin-bottom:8px;padding:0 8px;}
   .hud-pill{padding:6px 12px;font-size:13px;}
   .hud-value{font-size:17px;}
 
   /* 舞台铺满、圆角减小 */
-  .stage{border-radius:10px;padding:4px 4px 0;}
+  .stage{border-radius:0;padding:4px 0 0;aspect-ratio:340 / 384;}
   .stage-hint{top:6px;font-size:11px;padding:4px 9px;}
   .stage-tip{display:none;}
 

@@ -157,7 +157,7 @@
     var stageW = stage.clientWidth || window.innerWidth;
     if (stageW < 520) {
       // 手机：拉近到头部与嘴巴，牙齿更大更好点
-      croc.setAttribute('viewBox', '128 84 392 296');
+      croc.setAttribute('viewBox', '170 60 340 384');
     } else {
       croc.setAttribute('viewBox', '0 0 700 470');
     }
