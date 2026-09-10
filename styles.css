@@ -164,29 +164,29 @@ strong{font-weight:600;color:var(--charcoal);}
 .shine.small{opacity:.85;}
 .brow{fill:none;stroke:#2c6b3a;stroke-width:5;stroke-linecap:round;opacity:.55;}
 .deco .lily{fill:#9be0b1;opacity:.75;}
+.croc-shadow{fill:#1f5b34;opacity:.14;}
+.rim{fill:none;stroke:rgba(255,255,255,.5);stroke-width:5;stroke-linecap:round;}
+.dots ellipse{fill:#3f8c45;opacity:.22;}
+.scutes path{fill:#8bd873;stroke:#2c6b3a;stroke-width:2.4;stroke-linejoin:round;}
+.cheek{fill:none;stroke:#3f8c45;stroke-width:4;opacity:.45;stroke-linecap:round;}
+.lip{fill:none;stroke:#2c6b3a;stroke-width:3;opacity:.5;stroke-linecap:round;}
+.eyelid{fill:none;stroke:#2c6b3a;stroke-width:5;stroke-linecap:round;opacity:.75;}
 .deco .bubble-d{fill:#fff;opacity:.65;}
 
 /* 牙齿 */
 .tooth{
   fill:url(#gTooth);
-  stroke:rgba(70,120,80,.35);
+  stroke:rgba(70,120,80,.3);
   stroke-width:1.2;
-  cursor:pointer;
   transform-box:fill-box;
   transform-origin:50% 0%;
-  transition:transform .14s ease,opacity .18s ease;
-  pointer-events:fill;
+  transition:transform .34s cubic-bezier(.22,1.28,.36,1), opacity .34s ease;
 }
 .tooth.down{transform-origin:50% 100%;}
-.tooth:hover{fill:#fff;}
-.tooth.pressed{transform:scaleY(.24);opacity:.42;pointer-events:none;}
-.tooth.pop{animation:toothPop .3s ease;}
-@keyframes toothPop{
-  0%{transform:scaleY(1) scaleX(1);}
-  45%{transform:scaleY(.34) scaleX(1.12);}
-  100%{transform:scaleY(.24) scaleX(1);}
-}
-.tooth:focus-visible{outline:none;}
+.tooth.pressed{transform:translateY(-6px) scaleY(.18);opacity:.28;}
+.tooth.down.pressed{transform:translateY(6px) scaleY(.18);opacity:.28;}
+.dimple{fill:rgba(52,104,66,.42);opacity:0;transform-box:fill-box;transform-origin:50% 50%;transition:opacity .32s ease;}
+.tooth-wrap.pressed .dimple{opacity:.5;}
 
 /* 咬合动画 */
 .upper-jaw{transform-box:view-box;transform-origin:480px 205px;transition:transform .18s cubic-bezier(.65,-.2,.35,1.3);}
@@ -235,18 +235,6 @@ strong{font-weight:600;color:var(--charcoal);}
 .result-stat{font-size:14px;color:var(--muted);background:rgba(28,28,28,.03);border:1px solid var(--line);border-radius:999px;display:inline-block;padding:6px 14px;}
 .result-actions{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
 
-/* ---------------- 内容区块 ---------------- */
-.section{padding:56px 24px 8px;}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.card{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:20px;}
-.card p{margin:0;font-size:15px;color:var(--muted);}
-details{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;}
-details summary{cursor:pointer;font-weight:600;list-style:none;}
-details summary::-webkit-details-marker{display:none;}
-details summary::before{content:"＋";margin-right:10px;color:var(--mint-deep);font-weight:600;}
-details[open] summary::before{content:"－";}
-details p{margin:12px 0 0;font-size:15px;color:var(--muted);}
-
 /* ---------------- 页脚 ---------------- */
 .site-footer{margin-top:64px;border-top:1px solid var(--line);padding:32px 0 40px;text-align:center;}
 .site-footer p{margin:0;font-weight:600;color:var(--charcoal);}
@@ -280,9 +268,11 @@ details p{margin:12px 0 0;font-size:15px;color:var(--muted);}
 .croc .deco,.croc .neck,.croc .mouth,.croc .throat,.croc .tongue,.croc .skull,
 .croc .skull-gloss,.croc .scute,.croc .nostril-bump,.croc .nostril,.croc .gloss,
 .croc .belly,.croc .eye-bump,.croc .eye-white,.croc .iris,.croc .pupil,.croc .shine,
-.croc .brow,.croc .jaw-up,.croc .jaw-low{pointer-events:none;}
+.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes path{pointer-events:none;}
+.croc{-webkit-tap-highlight-color:transparent;}
 .croc .tooth{pointer-events:none;}
-.croc .tooth-wrap{pointer-events:all;cursor:pointer;touch-action:manipulation;}
-.croc .hit{fill:transparent;pointer-events:all;}
-.croc .tooth-wrap:focus-visible{outline:none;}
-.croc .tooth-wrap:focus-visible .tooth{stroke:#2fbf8f;stroke-width:3;}
+.croc .tooth-wrap{pointer-events:all;cursor:pointer;touch-action:manipulation;outline:none !important;}
+.croc .tooth-wrap:focus,.croc .tooth-wrap:focus-visible{outline:none !important;}
+.croc .hit{fill:transparent;pointer-events:all;outline:none;}
+/* 键盘操作时只做柔和高光，不画方框 */
+.croc .tooth-wrap:focus-visible .tooth{filter:drop-shadow(0 0 5px rgba(47,191,143,.85));}

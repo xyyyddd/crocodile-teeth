@@ -110,7 +110,8 @@
 
     for (var i = 0; i < count; i++) {
       var t = count > 1 ? i / (count - 1) : 0;
-      var tt = 0.06 + t * 0.88;          // 两端各留余量
+      var tMax = pointsDown ? 0.92 : 0.84;   // 下排右侧避开头部，避免被挡
+      var tt = 0.07 + t * tMax;
       var x = lip.x1 + dx * tt;
       var y = lip.y1 + dy * tt;
 
@@ -134,6 +135,14 @@
         hit.setAttribute('height', (h + 26).toFixed(1));
       }
       g.appendChild(hit);
+
+      var dimple = document.createElementNS(SVG_NS, 'ellipse');
+      dimple.setAttribute('class', 'dimple');
+      dimple.setAttribute('cx', '0');
+      dimple.setAttribute('cy', pointsDown ? '1.5' : '-1.5');
+      dimple.setAttribute('rx', (w * 0.4).toFixed(1));
+      dimple.setAttribute('ry', '3.2');
+      g.appendChild(dimple);
 
       var path = document.createElementNS(SVG_NS, 'path');
       path.setAttribute('class', 'tooth' + (pointsDown ? '' : ' down'));
@@ -194,7 +203,7 @@
       bite();
     } else {
       state.safe++;
-      cell.el.classList.add('pressed', 'pop');
+      cell.el.classList.add('pressed');
       cell.wrap.classList.add('pressed');
       playClick();
       if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
@@ -238,6 +247,7 @@
     if (!wrap) return;
     var cell = state.cells.filter(function (c) { return c.wrap === wrap; })[0];
     pressCell(cell);
+    if (e.type === 'click' && wrap.blur) wrap.blur();
     e.preventDefault();
   }
 

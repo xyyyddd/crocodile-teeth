@@ -60,8 +60,6 @@
     </a>
     <nav class="site-nav" aria-label="页面导航">
       <a href="#game">开始游戏</a>
-      <a href="#how">玩法说明</a>
-      <a href="#faq">常见问题</a>
     </nav>
     <button id="soundBtn" class="ghost-btn" type="button" aria-pressed="true">🔊 音效开</button>
   </div>
@@ -77,7 +75,6 @@
     </p>
     <div class="hero-actions">
       <a class="primary-btn" href="#game">开始玩</a>
-      <a class="secondary-btn" href="#how">看玩法</a>
     </div>
   </section>
 
@@ -112,101 +109,112 @@
         <svg id="croc" class="croc" viewBox="0 0 700 470" role="img" aria-label="张嘴的卡通鳄鱼">
           <defs>
             <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#8FE27A"/><stop offset="0.55" stop-color="#5FC65A"/><stop offset="1" stop-color="#429B45"/>
-            </linearGradient>
-            <linearGradient id="gNeck" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#6FBF62"/><stop offset="1" stop-color="#4C9A47"/>
+              <stop offset="0" stop-color="#A6EC80"/><stop offset="0.45" stop-color="#69CB5D"/><stop offset="1" stop-color="#3E9944"/>
             </linearGradient>
             <linearGradient id="gLower" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#7FD370"/><stop offset="0.6" stop-color="#5BB054"/><stop offset="1" stop-color="#4A9A48"/>
+              <stop offset="0" stop-color="#8CDB7A"/><stop offset="0.55" stop-color="#5FB457"/><stop offset="1" stop-color="#459246"/>
             </linearGradient>
-            <linearGradient id="gBelly" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#EDFBD2"/><stop offset="1" stop-color="#CFEBA8"/>
+            <linearGradient id="gNeck" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#7ACB68"/><stop offset="1" stop-color="#4A9445"/>
             </linearGradient>
             <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A5473C"/><stop offset="0.55" stop-color="#75201C"/><stop offset="1" stop-color="#4A0F0C"/>
+              <stop offset="0" stop-color="#B4524A"/><stop offset="0.5" stop-color="#7A2320"/><stop offset="1" stop-color="#420C0A"/>
             </linearGradient>
             <linearGradient id="gTongue" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FF9E93"/><stop offset="1" stop-color="#F16A69"/>
+              <stop offset="0" stop-color="#FFA79C"/><stop offset="1" stop-color="#EF6B6A"/>
             </linearGradient>
             <linearGradient id="gTooth" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.7" stop-color="#F7FFF8"/><stop offset="1" stop-color="#E1F2E6"/>
+              <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.72" stop-color="#F8FFFA"/><stop offset="1" stop-color="#DDEFE3"/>
             </linearGradient>
-            <linearGradient id="gScale" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A6EB84"/><stop offset="1" stop-color="#77D06A"/>
+            <linearGradient id="gBelly" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F2FDDA"/><stop offset="1" stop-color="#CEEAA6"/>
+            </linearGradient>
+            <linearGradient id="gEye" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFEFAE"/><stop offset="1" stop-color="#EFB43A"/>
             </linearGradient>
             <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1F5B34" flood-opacity="0.22"/>
+              <feDropShadow dx="0" dy="9" stdDeviation="11" flood-color="#1F5B34" flood-opacity="0.2"/>
             </filter>
-            <filter id="fTooth" x="-60%" y="-60%" width="220%" height="220%">
-              <feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#2C5C33" flood-opacity="0.35"/>
+            <filter id="fTooth" x="-70%" y="-70%" width="240%" height="240%">
+              <feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#2C5C33" flood-opacity="0.32"/>
             </filter>
           </defs>
 
-          <!-- 装饰：水面泡泡 + 荷叶 -->
-          <g class="deco" aria-hidden="true">
-            <ellipse class="lily" cx="96" cy="404" rx="52" ry="20"/>
-            <ellipse class="lily" cx="622" cy="392" rx="44" ry="17"/>
-            <circle class="bubble-d" cx="140" cy="120" r="12"/>
-            <circle class="bubble-d" cx="600" cy="150" r="9"/>
-            <circle class="bubble-d" cx="520" cy="86" r="7"/>
-          </g>
+          <!-- 地面阴影 -->
+          <ellipse class="croc-shadow" cx="350" cy="446" rx="292" ry="20"/>
 
           <g filter="url(#fSoft)">
             <!-- 身体 / 脖子 -->
-            <path class="neck" d="M452 156 C520 122 616 132 668 182 C692 214 694 320 686 470 L470 470 C492 396 486 322 466 278 C452 244 446 194 452 156 Z"/>
+            <path class="neck" d="M452 156 C520 122 616 132 668 182 C692 210 692 320 684 470 L470 470 C492 396 486 322 466 278 C452 244 446 194 452 156 Z"/>
+            <g class="dots">
+              <ellipse cx="520" cy="212" rx="9" ry="6"/><ellipse cx="556" cy="240" rx="9" ry="6"/>
+              <ellipse cx="584" cy="274" rx="9" ry="6"/><ellipse cx="608" cy="314" rx="9" ry="6"/>
+              <ellipse cx="624" cy="358" rx="9" ry="6"/><ellipse cx="636" cy="404" rx="9" ry="6"/>
+              <ellipse cx="538" cy="288" rx="8" ry="5"/><ellipse cx="570" cy="326" rx="8" ry="5"/>
+              <ellipse cx="596" cy="370" rx="8" ry="5"/><ellipse cx="616" cy="416" rx="8" ry="5"/>
+            </g>
 
-            <!-- 口腔（深色开口） -->
+            <!-- 口腔 -->
             <path class="mouth" d="M470 248 C400 240 258 220 112 212 C88 209 72 218 72 238 L76 340 C77 358 90 366 110 362 C262 346 400 318 470 296 Z"/>
-            <!-- 喉咙阴影 -->
             <path class="throat" d="M470 248 C440 244 408 240 386 238 L392 330 C420 326 448 308 470 296 Z"/>
           </g>
 
-          <!-- 上颚（咬合时转动） -->
+          <!-- 上颚 -->
           <g id="upperJaw" class="upper-jaw">
-            <path class="jaw-up" d="M470 168 C432 146 336 138 202 138 C122 138 60 146 42 168 C32 180 33 192 45 202 C74 226 146 238 224 242 L400 246 C440 247 468 240 484 224 L486 190 C486 180 479 172 470 168 Z"/>
-            <!-- 上颚高光 -->
-            <path class="gloss" d="M92 160 C170 150 300 148 420 152 C360 158 200 160 92 160 Z"/>
-            <!-- 鼻孔隆起 -->
-            <ellipse class="nostril-bump" cx="80" cy="152" rx="28" ry="19"/>
-            <ellipse class="nostril" cx="78" cy="152" rx="8" ry="5"/>
-            <!-- 上颚脊 -->
-            <ellipse class="scute" cx="168" cy="136" rx="18" ry="11"/>
-            <ellipse class="scute" cx="218" cy="133" rx="18" ry="11"/>
-            <ellipse class="scute" cx="268" cy="131" rx="18" ry="11"/>
-            <ellipse class="scute" cx="318" cy="130" rx="18" ry="11"/>
-            <ellipse class="scute" cx="368" cy="130" rx="18" ry="11"/>
+            <path class="jaw-up" d="M470 166 C430 142 340 132 210 134 C126 136 62 148 44 172 C34 184 36 196 48 206 C76 228 148 238 226 242 L400 246 C440 247 468 240 484 224 L486 190 C486 178 478 170 470 166 Z"/>
+            <path class="rim" d="M74 176 C124 149 224 141 322 143 C380 144 430 151 466 169"/>
+            <g class="scutes">
+              <path d="M150 140 C156 127 170 127 176 140 Z"/>
+              <path d="M198 136 C204 123 218 123 224 136 Z"/>
+              <path d="M246 134 C252 121 266 121 272 134 Z"/>
+              <path d="M294 133 C300 120 314 120 320 133 Z"/>
+              <path d="M342 133 C348 120 362 120 368 133 Z"/>
+            </g>
+            <ellipse class="nostril-bump" cx="80" cy="162" rx="31" ry="21"/>
+            <path class="nostril" d="M70 158 C77 152 87 153 90 160 C83 165 74 163 70 158 Z"/>
+            <path class="lip" d="M62 206 C120 226 220 238 320 242 L446 245"/>
             <g id="upperTeeth"></g>
           </g>
 
-          <!-- 舌头（画在下颚之前，避免挡住牙齿的点击） -->
-          <path class="tongue" d="M164 320 C240 312 330 308 416 316 C398 342 320 356 244 352 C196 349 170 338 164 320 Z"/>
+          <!-- 舌头 -->
+          <path class="tongue" d="M168 322 C242 312 332 308 414 316 C396 344 318 358 244 354 C198 351 172 340 168 322 Z"/>
 
           <!-- 下颚 -->
           <g id="lowerJaw" class="lower-jaw">
             <path class="jaw-low" d="M482 300 C430 290 300 304 172 318 C120 324 84 330 78 346 C74 362 80 388 102 398 C172 424 300 428 382 420 C442 414 484 394 494 366 L494 330 C494 314 490 306 482 300 Z"/>
-            <path class="belly" d="M96 402 C180 424 320 424 470 396 L476 404 C440 428 320 438 190 428 C140 424 106 414 96 402 Z"/>
-            <ellipse class="scute" cx="300" cy="322" rx="16" ry="9"/>
-            <ellipse class="scute" cx="352" cy="318" rx="16" ry="9"/>
-            <ellipse class="scute" cx="404" cy="315" rx="16" ry="9"/>
+            <path class="belly" d="M94 396 C182 424 322 426 476 394 L482 408 C442 434 322 444 190 430 C138 424 102 412 94 396 Z"/>
+            <path class="lip" d="M88 342 C162 324 300 308 468 302"/>
+            <g class="dots">
+              <ellipse cx="204" cy="374" rx="8" ry="5"/><ellipse cx="254" cy="380" rx="8" ry="5"/>
+              <ellipse cx="304" cy="384" rx="8" ry="5"/><ellipse cx="354" cy="384" rx="8" ry="5"/>
+              <ellipse cx="404" cy="378" rx="8" ry="5"/>
+            </g>
             <g id="lowerTeeth"></g>
           </g>
 
-
-          <!-- 头骨 + 眼睛 -->
+          <!-- 头部 + 眼睛 -->
           <g id="head" class="head">
             <path class="skull" d="M436 150 C440 96 494 54 566 56 C640 58 690 112 694 186 C698 268 640 330 560 334 C506 336 462 302 448 254 C438 216 430 180 436 150 Z"/>
-            <path class="skull-gloss" d="M494 92 C556 72 622 84 660 122 C600 96 520 96 494 92 Z"/>
-            <ellipse class="scute" cx="618" cy="62" rx="20" ry="12"/>
-            <ellipse class="scute" cx="666" cy="84" rx="20" ry="12"/>
-            <ellipse class="scute" cx="686" cy="132" rx="18" ry="11"/>
-            <ellipse class="eye-bump" cx="500" cy="106" rx="48" ry="41"/>
-            <ellipse class="eye-white" cx="494" cy="104" rx="31" ry="29"/>
-            <ellipse class="iris" cx="486" cy="106" rx="20" ry="20"/>
-            <ellipse class="pupil" cx="484" cy="108" rx="7" ry="15"/>
-            <circle class="shine" cx="474" cy="94" r="6"/>
-            <circle class="shine small" cx="492" cy="118" r="3.5"/>
-            <path class="brow" d="M456 78 C480 62 516 62 540 76" />
+            <path class="rim" d="M470 94 C512 62 580 56 632 86"/>
+            <path class="cheek" d="M452 234 C478 268 512 292 556 300"/>
+            <g class="dots">
+              <ellipse cx="532" cy="122" rx="8" ry="5"/><ellipse cx="576" cy="114" rx="8" ry="5"/>
+              <ellipse cx="618" cy="124" rx="8" ry="5"/><ellipse cx="652" cy="152" rx="8" ry="5"/>
+              <ellipse cx="664" cy="194" rx="8" ry="5"/><ellipse cx="656" cy="238" rx="8" ry="5"/>
+              <ellipse cx="636" cy="278" rx="8" ry="5"/><ellipse cx="598" cy="306" rx="8" ry="5"/>
+            </g>
+            <g class="scutes">
+              <path d="M600 60 C606 44 622 44 628 60 Z"/>
+              <path d="M646 70 C652 54 668 54 674 70 Z"/>
+              <path d="M680 106 C686 90 700 90 700 106 Z"/>
+            </g>
+            <ellipse class="eye-bump" cx="502" cy="106" rx="50" ry="43"/>
+            <ellipse class="eye-white" cx="496" cy="104" rx="33" ry="31"/>
+            <ellipse class="iris" cx="487" cy="106" rx="21" ry="21" fill="url(#gEye)"/>
+            <ellipse class="pupil" cx="485" cy="108" rx="7" ry="16"/>
+            <circle class="shine" cx="475" cy="93" r="7"/>
+            <circle class="shine small" cx="494" cy="120" r="4"/>
+            <path class="eyelid" d="M462 82 C482 68 516 66 538 78"/>
           </g>
         </svg>
 
@@ -230,47 +238,6 @@
     </div>
   </section>
 
-  <section id="how" class="wrap section">
-    <h2>怎么玩：鳄鱼拔牙规则</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>1. 两个人，一台设备</h3>
-        <p>不用注册、不用分账号。两个人共用一台手机或电脑，谁拿着设备谁操作，按完觉得安全就把设备交给对方。</p>
-      </article>
-      <article class="card">
-        <h3>2. 上下两排牙都能按</h3>
-        <p>鳄鱼嘴里藏着唯一一颗“机关牙”。上排和下排的牙齿都能点，一次按几颗都行，按得越多越刺激。</p>
-      </article>
-      <article class="card">
-        <h3>3. 按到机关牙就出局</h3>
-        <p>安全牙被按下去就消失了；一旦有人按到机关牙，鳄鱼的嘴巴会“啪”地合上，把手指咬住，这个人本局判负。</p>
-      </article>
-      <article class="card">
-        <h3>4. 目标：把对方送进鳄鱼嘴里</h3>
-        <p>坚持按掉更多安全牙、把风险留给对方，就是这个小游戏的乐趣。每局机关牙都会重新随机。</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="faq" class="wrap section">
-    <h2>常见问题</h2>
-    <details>
-      <summary>鳄鱼拔牙可以在手机上玩吗？</summary>
-      <p>可以。这个网页版针对手机做了适配，用手指点牙齿即可，也支持电脑鼠标操作，两个人凑在一台设备前就能玩。</p>
-    </details>
-    <details>
-      <summary>这个游戏收费吗？有广告或者道具吗？</summary>
-      <p>完全免费。游戏内没有充值、没有虚拟货币、没有商城、没有兑换码、没有会员、没有道具，也没有广告弹窗，打开网页就能玩。</p>
-    </details>
-    <details>
-      <summary>每局有多少颗牙？机关牙是固定的吗？</summary>
-      <p>默认整嘴 20 颗牙（上排 10 颗、下排 10 颗），也可以切换 24 颗或 28 颗。机关牙每局都会在所有牙齿里重新随机，所以每局都不一样。</p>
-    </details>
-    <details>
-      <summary>最多几个人一起玩？</summary>
-      <p>按玩法设计是两个人同屏轮流玩。因为没有回合提示，多人聚会时也可以自行约定顺序。</p>
-    </details>
-  </section>
 </main>
 
 <footer class="site-footer">
