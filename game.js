@@ -121,33 +121,29 @@
 
       var g = document.createElementNS(SVG_NS, 'g');
       g.setAttribute('class', 'tooth-wrap' + (pointsDown ? '' : ' down'));
-      g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + angle.toFixed(2) + ')');
+      g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + (pointsDown ? angle : angle + 180).toFixed(2) + ')');
 
       // 透明整格点击区（手机上更好点）
       var hit = document.createElementNS(SVG_NS, 'rect');
       hit.setAttribute('class', 'hit');
       hit.setAttribute('x', (-hitW / 2).toFixed(1));
       hit.setAttribute('width', hitW.toFixed(1));
-      if (pointsDown) {
-        hit.setAttribute('y', (-14).toFixed(1));
-        hit.setAttribute('height', (h + 26).toFixed(1));
-      } else {
-        hit.setAttribute('y', (-h - 14).toFixed(1));
-        hit.setAttribute('height', (h + 26).toFixed(1));
-      }
+      // 点击区覆盖整颗牙（下排牙整体旋转 180°，所以统一用同一段局部坐标）
+      hit.setAttribute('y', (-18).toFixed(1));
+      hit.setAttribute('height', (h + 36).toFixed(1));
       g.appendChild(hit);
 
       var dimple = document.createElementNS(SVG_NS, 'ellipse');
       dimple.setAttribute('class', 'dimple');
       dimple.setAttribute('cx', '0');
-      dimple.setAttribute('cy', pointsDown ? '1.5' : '-1.5');
+      dimple.setAttribute('cy', '1.5');
       dimple.setAttribute('rx', (w * 0.4).toFixed(1));
       dimple.setAttribute('ry', '3.2');
       g.appendChild(dimple);
 
       var path = document.createElementNS(SVG_NS, 'path');
       path.setAttribute('class', 'tooth' + (pointsDown ? '' : ' down'));
-      path.setAttribute('d', toothPath(w, h, pointsDown));
+      path.setAttribute('d', toothPath(w, h, true));  // 上下牙共用同一椭圆牙形
       if (pointsDown) path.setAttribute('filter', 'url(#fTooth)');
       g.appendChild(path);
       group.appendChild(g);

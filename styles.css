@@ -181,9 +181,7 @@ strong{font-weight:600;color:var(--charcoal);}
   transform-origin:50% 0%;
   transition:transform .34s cubic-bezier(.22,1.28,.36,1), opacity .34s ease;
 }
-.tooth.down{transform-origin:50% 100%;}
 .tooth.pressed{transform:translateY(-6px) scaleY(.18);opacity:.28;}
-.tooth.down.pressed{transform:translateY(6px) scaleY(.18);opacity:.28;}
 .dimple{fill:rgba(52,104,66,.42);opacity:0;transform-box:fill-box;transform-origin:50% 50%;transition:opacity .32s ease;}
 .tooth-wrap.pressed .dimple{opacity:.5;}
 
