@@ -275,3 +275,46 @@ strong{font-weight:600;color:var(--charcoal);}
 .croc .hit{fill:transparent;pointer-events:all;outline:none;}
 /* 键盘操作时只做柔和高光，不画方框 */
 .croc .tooth-wrap:focus-visible .tooth{filter:drop-shadow(0 0 5px rgba(47,191,143,.85));}
+/* =========================================================
+   手机端：让游戏区尽量大，压缩所有周边留白
+   ========================================================= */
+@media (max-width:600px){
+  /* 顶部导航瘦身 */
+  .header-inner{height:52px;gap:10px;}
+  .brand{font-size:15px;gap:8px;}
+  .brand-mark{width:22px;height:22px;}
+  #soundBtn{padding:7px 13px;font-size:13px;}
+
+  /* 首屏只留标题，让游戏立刻出现 */
+  .hero{padding:14px 16px 8px;}
+  .hero .eyebrow{display:none;}
+  .hero h1{font-size:30px;margin:0;}
+  .hero .lede{display:none;}
+  .hero-actions{display:none;}
+
+  /* 游戏卡片通栏，去掉左右边框和大圆角 */
+  .game-section{padding:0 !important;}
+  .game-card{
+    border-radius:0;border-left:0;border-right:0;
+    padding:8px 6px 8px;
+  }
+  .game-toolbar{gap:8px;margin-bottom:8px;padding:0 2px;}
+  .seg{padding:3px;}
+  .seg button{padding:6px 10px;font-size:13px;}
+  #restartBtn{padding:8px 14px;font-size:13px;}
+
+  /* 数据条更紧凑 */
+  .hud{gap:8px;margin-bottom:8px;padding:0 2px;}
+  .hud-pill{padding:6px 12px;font-size:13px;}
+  .hud-value{font-size:17px;}
+
+  /* 舞台铺满、圆角减小 */
+  .stage{border-radius:10px;padding:4px 4px 0;}
+  .stage-hint{top:6px;font-size:11px;padding:4px 9px;}
+  .stage-tip{display:none;}
+
+  /* 结果弹窗稍微收窄，避免溢出 */
+  .result-card{padding:22px 16px 18px;border-radius:16px;}
+  .result-card h2{font-size:26px;}
+  .result-actions .primary-btn,.result-actions .secondary-btn{padding:10px 20px;}
+}
