@@ -164,6 +164,10 @@ strong{font-weight:600;color:var(--charcoal);}
 .tongue{fill:url(#gTongue);}
 .jaw-up{fill:url(#gBody);stroke:#4f9f4e;stroke-width:4;}
 .jaw-low{fill:url(#gLower);stroke:#4f9f4e;stroke-width:4;}
+.neck{fill:url(#gNeck);stroke:#4f9f4e;stroke-width:3.5;}
+.scute{fill:#A9E98F;stroke:#4f9f4e;stroke-width:2.2;}
+.cheek{fill:none;stroke:#4f9f4e;stroke-width:4;opacity:.4;stroke-linecap:round;}
+.lip{fill:none;stroke:#4f9f4e;stroke-width:3;opacity:.45;stroke-linecap:round;}
 .croc-shadow{fill:#1f5b34;opacity:.12;}
 .deco .lily{fill:#9be0b1;opacity:.75;}
 .deco .bubble-d{fill:#fff;opacity:.65;}
@@ -184,8 +188,8 @@ strong{font-weight:600;color:var(--charcoal);}
 .tooth-wrap.pressed .dimple{opacity:.5;}
 
 /* 咬合动画 */
-.upper-jaw{transform-box:view-box;transition:transform .2s cubic-bezier(.55,-.1,.35,1.25);}
-.croc.bitten .upper-jaw{transform:translateY(94px);}
+.upper-jaw{transform-box:view-box;transform-origin:494px 200px;transition:transform .2s cubic-bezier(.55,-.1,.35,1.25);}
+.croc.bitten .upper-jaw{transform:rotate(-20deg);}
 .croc.bitten .mouth{opacity:.5;transition:opacity .18s ease;}
 .croc.bitten .tongue{opacity:.55;transition:opacity .18s ease;}
 
@@ -264,7 +268,7 @@ strong{font-weight:600;color:var(--charcoal);}
 .croc .deco,.croc .neck,.croc .mouth,.croc .throat,.croc .tongue,.croc .skull,
 .croc .skull-gloss,.croc .scute,.croc .nostril-bump,.croc .nostril,.croc .gloss,
 .croc .belly,.croc .eye-bump,.croc .eye-white,.croc .iris,.croc .pupil,.croc .shine,
-.croc .body,.croc .belly,.croc .foot,.croc .tail,.croc .tail-scute,.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes ellipse,.croc .scutes path,.croc .blush,.croc .iris,.croc .pupil,.croc .shine,.croc .eye-white,.croc .nostril-bump,.croc .nostril,.croc .throat,.croc .mouth,.croc .tongue{pointer-events:none;}
+.croc .neck,.croc .scute,.croc .cheek,.croc .lip,.croc .body,.croc .belly,.croc .foot,.croc .tail,.croc .tail-scute,.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes ellipse,.croc .scutes path,.croc .blush,.croc .iris,.croc .pupil,.croc .shine,.croc .eye-white,.croc .nostril-bump,.croc .nostril,.croc .throat,.croc .mouth,.croc .tongue{pointer-events:none;}
 .croc{-webkit-tap-highlight-color:transparent;}
 .croc .tooth{pointer-events:none;}
 .croc .tooth-wrap{pointer-events:all;cursor:pointer;touch-action:manipulation;outline:none !important;}

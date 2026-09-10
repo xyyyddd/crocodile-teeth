@@ -109,25 +109,25 @@
         <svg id="croc" class="croc" viewBox="0 0 700 470" role="img" aria-label="可爱的卡通鳄鱼张嘴">
           <defs>
             <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#CFF7AC"/><stop offset="0.5" stop-color="#93E27F"/><stop offset="1" stop-color="#63C367"/>
+              <stop offset="0" stop-color="#D3F9B0"/><stop offset="0.5" stop-color="#98E47F"/><stop offset="1" stop-color="#67C465"/>
             </linearGradient>
             <linearGradient id="gLower" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#B4EE9B"/><stop offset="0.6" stop-color="#84D574"/><stop offset="1" stop-color="#62BE64"/>
+              <stop offset="0" stop-color="#B8F09C"/><stop offset="0.6" stop-color="#8AD875"/><stop offset="1" stop-color="#69C067"/>
             </linearGradient>
             <linearGradient id="gNeck" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A9E98F"/><stop offset="1" stop-color="#6FC66C"/>
+              <stop offset="0" stop-color="#A9E98F"/><stop offset="1" stop-color="#72C86C"/>
             </linearGradient>
             <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FFC0B7"/><stop offset="0.55" stop-color="#F58C84"/><stop offset="1" stop-color="#DE6A64"/>
+              <stop offset="0" stop-color="#FFC8BE"/><stop offset="0.55" stop-color="#F79489"/><stop offset="1" stop-color="#E2746C"/>
             </linearGradient>
             <linearGradient id="gTongue" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FFD3CC"/><stop offset="1" stop-color="#FCA49E"/>
+              <stop offset="0" stop-color="#FFD6CF"/><stop offset="1" stop-color="#FCA8A1"/>
             </linearGradient>
             <linearGradient id="gTooth" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.72" stop-color="#F8FFFA"/><stop offset="1" stop-color="#E4F3E7"/>
             </linearGradient>
             <linearGradient id="gBelly" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FBFFF1"/><stop offset="1" stop-color="#E2F5C4"/>
+              <stop offset="0" stop-color="#FBFFF1"/><stop offset="1" stop-color="#E3F6C6"/>
             </linearGradient>
             <linearGradient id="gEye" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#FFF1B6"/><stop offset="1" stop-color="#F0B63C"/>
@@ -140,68 +140,64 @@
             </filter>
           </defs>
 
-          <ellipse class="croc-shadow" cx="350" cy="450" rx="236" ry="17"/>
+          <ellipse class="croc-shadow" cx="380" cy="438" rx="290" ry="18"/>
 
           <g filter="url(#fSoft)">
-            <!-- 小尾巴 -->
-            <path class="tail" d="M466 372 C520 384 556 350 542 308 C534 284 512 280 500 294 C516 308 512 336 490 348 Z"/>
-            <ellipse class="tail-scute" cx="524" cy="322" rx="13" ry="9"/>
-            <ellipse class="tail-scute" cx="506" cy="352" rx="12" ry="8"/>
-            <!-- 小脚 -->
-            <ellipse class="foot" cx="288" cy="446" rx="48" ry="23"/>
-            <ellipse class="foot" cx="412" cy="446" rx="48" ry="23"/>
-            <!-- 身体 -->
-            <path class="body" d="M232 322 C216 392 252 448 350 448 C448 448 484 392 468 322 Z"/>
-            <ellipse class="belly" cx="350" cy="392" rx="98" ry="58"/>
+            <!-- 脖子 / 身体 -->
+            <path class="neck" d="M470 150 C540 118 620 130 664 178 C694 212 696 320 686 470 L478 470 C494 400 490 330 476 286 C464 250 462 196 470 150 Z"/>
+            <ellipse class="scute" cx="628" cy="128" rx="16" ry="11"/>
+            <ellipse class="scute" cx="668" cy="158" rx="15" ry="10"/>
+
+            <!-- 口腔（粉嫩） -->
+            <path class="mouth" d="M452 241 L150 232 C128 230 116 240 118 256 L128 322 C130 338 142 344 160 340 L452 304 C470 302 476 294 474 280 L474 256 C474 246 464 242 452 241 Z"/>
+            <ellipse class="throat" cx="428" cy="274" rx="58" ry="40" opacity="0.55"/>
+            <path class="tongue" d="M210 336 C270 326 350 316 430 310 C410 340 340 354 270 350 C236 348 214 344 210 336 Z"/>
           </g>
 
-          <!-- 大头 -->
-          <g id="head" class="head">
-            <path class="skull" d="M350 26 C488 26 590 120 590 236 C590 336 492 404 350 404 C208 404 110 336 110 236 C110 120 212 26 350 26 Z"/>
-            <path class="rim" d="M186 110 C238 56 302 34 374 36"/>
-            <g class="dots">
-              <ellipse cx="212" cy="196" rx="9" ry="6"/><ellipse cx="180" cy="246" rx="8" ry="5"/>
-              <ellipse cx="232" cy="130" rx="8" ry="5"/><ellipse cx="300" cy="96" rx="8" ry="5"/>
-              <ellipse cx="420" cy="94" rx="8" ry="5"/><ellipse cx="490" cy="126" rx="8" ry="5"/>
-              <ellipse cx="528" cy="176" rx="9" ry="6"/><ellipse cx="536" cy="238" rx="8" ry="5"/>
-            </g>
-            <!-- 大眼睛 -->
-            <ellipse class="eye-white" cx="250" cy="156" rx="60" ry="64"/>
-            <ellipse class="eye-white" cx="450" cy="156" rx="60" ry="64"/>
-            <ellipse class="iris" cx="256" cy="166" rx="36" ry="36" fill="url(#gEye)"/>
-            <ellipse class="iris" cx="444" cy="166" rx="36" ry="36" fill="url(#gEye)"/>
-            <ellipse class="pupil" cx="256" cy="168" rx="17" ry="20"/>
-            <ellipse class="pupil" cx="444" cy="168" rx="17" ry="20"/>
-            <circle class="shine" cx="244" cy="152" r="9"/>
-            <circle class="shine" cx="432" cy="152" r="9"/>
-            <circle class="shine small" cx="266" cy="184" r="4.5"/>
-            <circle class="shine small" cx="454" cy="184" r="4.5"/>
-            <path class="eyelid" d="M200 112 C220 94 262 88 296 98"/>
-            <path class="eyelid" d="M404 98 C438 88 480 94 500 112"/>
-            <!-- 腮红 -->
-            <ellipse class="blush" cx="168" cy="278" rx="36" ry="21"/>
-            <ellipse class="blush" cx="532" cy="278" rx="36" ry="21"/>
-            <!-- 鼻孔 -->
-            <ellipse class="nostril-bump" cx="350" cy="226" rx="78" ry="38"/>
-            <ellipse class="nostril" cx="328" cy="224" rx="10" ry="7"/>
-            <ellipse class="nostril" cx="372" cy="224" rx="10" ry="7"/>
-          </g>
-
-          <!-- 大嘴（粉嫩口腔） -->
-          <path class="mouth" d="M350 264 C236 264 182 306 182 356 C182 402 252 432 350 432 C448 432 518 402 518 356 C518 306 464 264 350 264 Z"/>
-          <ellipse class="throat" cx="350" cy="300" rx="126" ry="54" opacity="0.45"/>
-          <path class="tongue" d="M262 398 C300 430 400 430 438 398 C420 424 384 434 350 434 C316 434 280 424 262 398 Z"/>
-
-          <!-- 上唇 + 上排牙 -->
+          <!-- 上颚（长吻，咬合时以关节转动） -->
           <g id="upperJaw" class="upper-jaw">
-            <path class="jaw-up" d="M184 296 C184 270 236 254 350 254 C464 254 516 270 516 296 L516 318 C468 302 416 294 350 294 C284 294 232 302 184 318 Z"/>
+            <path class="jaw-up" d="M494 166 C470 142 420 130 350 130 C250 128 150 142 96 166 C70 178 62 192 66 206 C72 224 104 232 150 232 L452 241 C476 242 490 233 494 214 C497 196 496 180 494 166 Z"/>
+            <path class="rim" d="M118 178 C170 150 260 138 350 138 C410 138 462 148 486 168"/>
+            <ellipse class="scute" cx="200" cy="128" rx="15" ry="10"/>
+            <ellipse class="scute" cx="258" cy="124" rx="15" ry="10"/>
+            <ellipse class="scute" cx="316" cy="124" rx="15" ry="10"/>
+            <ellipse class="scute" cx="374" cy="126" rx="15" ry="10"/>
+            <ellipse class="nostril-bump" cx="92" cy="156" rx="31" ry="21"/>
+            <path class="nostril" d="M84 152 C92 147 102 149 104 156 C96 161 88 158 84 152 Z"/>
+            <path class="lip" d="M150 232 L452 241"/>
             <g id="upperTeeth"></g>
           </g>
 
-          <!-- 下唇 + 下排牙 -->
+          <!-- 下颚 -->
           <g id="lowerJaw" class="lower-jaw">
-            <path class="jaw-low" d="M184 424 C184 448 236 462 350 462 C464 462 516 448 516 424 L516 400 C468 416 416 424 350 424 C284 424 232 416 184 400 Z"/>
+            <path class="jaw-low" d="M470 296 L452 300 L150 332 C128 334 118 344 122 358 C126 378 148 392 178 396 C260 410 360 408 424 394 C462 386 486 368 488 346 L488 320 C488 306 480 298 470 296 Z"/>
+            <path class="belly" d="M132 372 C200 400 330 404 476 380 L482 396 C400 424 240 424 140 400 C132 396 130 384 132 372 Z"/>
+            <path class="lip" d="M150 332 L452 300"/>
+            <ellipse class="scute" cx="250" cy="372" rx="14" ry="9"/>
+            <ellipse class="scute" cx="308" cy="376" rx="14" ry="9"/>
+            <ellipse class="scute" cx="366" cy="374" rx="14" ry="9"/>
             <g id="lowerTeeth"></g>
+          </g>
+
+          <!-- 头部 + 大眼睛 -->
+          <g id="head" class="head">
+            <path class="skull" d="M462 190 C462 118 518 60 584 60 C652 60 700 118 700 190 C700 262 652 320 584 320 C518 320 462 262 462 190 Z"/>
+            <path class="rim" d="M500 106 C540 74 596 66 642 90"/>
+            <path class="cheek" d="M470 262 C494 292 528 312 566 316"/>
+            <g class="dots">
+              <ellipse cx="520" cy="150" rx="8" ry="5"/><ellipse cx="560" cy="128" rx="8" ry="5"/>
+              <ellipse cx="606" cy="132" rx="8" ry="5"/><ellipse cx="648" cy="164" rx="8" ry="5"/>
+              <ellipse cx="664" cy="212" rx="8" ry="5"/><ellipse cx="648" cy="256" rx="8" ry="5"/>
+              <ellipse cx="612" cy="292" rx="8" ry="5"/><ellipse cx="566" cy="304" rx="8" ry="5"/>
+            </g>
+            <ellipse class="eye-bump" cx="506" cy="112" rx="53" ry="46"/>
+            <ellipse class="eye-white" cx="500" cy="108" rx="38" ry="36"/>
+            <ellipse class="iris" cx="489" cy="111" rx="26" ry="26" fill="url(#gEye)"/>
+            <ellipse class="pupil" cx="487" cy="113" rx="9" ry="19"/>
+            <circle class="shine" cx="474" cy="94" r="9"/>
+            <circle class="shine small" cx="502" cy="126" r="4.5"/>
+            <path class="eyelid" d="M462 84 C484 68 520 64 546 78"/>
+            <ellipse class="blush" cx="530" cy="190" rx="26" ry="15" transform="rotate(-8 530 190)"/>
           </g>
         </svg>
 
