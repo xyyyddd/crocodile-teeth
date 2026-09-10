@@ -78,13 +78,18 @@
 
   /* ---------------- 建牙 ---------------- */
   function toothPath(w, h, pointsDown) {
+    // 圆润的“小胖牙”：根部平、前端半圆，看起来更呆萌
+    var half = w / 2;
+    var round = h * 0.62;
     var d = '';
     if (pointsDown) {
-      d = 'M ' + (-w / 2) + ' 0 C ' + (-w / 2) + ' ' + (h * 0.45) + ', ' + (-w * 0.22) + ' ' + (h * 0.86) + ', 0 ' + h +
-          ' C ' + (w * 0.22) + ' ' + (h * 0.86) + ', ' + (w / 2) + ' ' + (h * 0.45) + ', ' + (w / 2) + ' 0 Z';
+      d = 'M ' + (-half) + ' 0 L ' + (-half) + ' ' + round +
+          ' A ' + half + ' ' + (h - round) + ' 0 0 0 ' + half + ' ' + round +
+          ' L ' + half + ' 0 Z';
     } else {
-      d = 'M ' + (-w / 2) + ' 0 C ' + (-w / 2) + ' ' + (-h * 0.45) + ', ' + (-w * 0.22) + ' ' + (-h * 0.86) + ', 0 ' + (-h) +
-          ' C ' + (w * 0.22) + ' ' + (-h * 0.86) + ', ' + (w / 2) + ' ' + (-h * 0.45) + ', ' + (w / 2) + ' 0 Z';
+      d = 'M ' + (-half) + ' 0 L ' + (-half) + ' ' + (-round) +
+          ' A ' + half + ' ' + (h - round) + ' 0 0 0 ' + half + ' ' + (-round) +
+          ' L ' + half + ' 0 Z';
     }
     return d;
   }
@@ -118,9 +123,6 @@
       var g = document.createElementNS(SVG_NS, 'g');
       g.setAttribute('class', 'tooth-wrap' + (pointsDown ? '' : ' down'));
       g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + angle.toFixed(2) + ')');
-      g.setAttribute('role', 'button');
-      g.setAttribute('tabindex', '0');
-      g.setAttribute('aria-label', label + '第 ' + (i + 1) + ' 颗牙');
 
       // 透明整格点击区（手机上更好点）
       var hit = document.createElementNS(SVG_NS, 'rect');
@@ -187,6 +189,8 @@
 
     updateHud();
     stageHint.textContent = '上下两排都能按 · 想按几颗按几颗';
+    cursor.row = 0;
+    cursor.col = 0;
   }
 
   /* ---------------- 交互 ---------------- */
@@ -209,6 +213,34 @@
       if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
       updateHud();
     }
+  }
+
+  var cursor = { row: 0, col: 0 };
+
+  function rowCounts() {
+    var up = 0;
+    state.cells.forEach(function (c) { if (c.pointsDown) up++; });
+    return { up: up, down: state.cells.length - up };
+  }
+
+  function cursorCell() {
+    var rc = rowCounts();
+    if (cursor.row === 0) return state.cells[Math.min(cursor.col, rc.up - 1)];
+    return state.cells[rc.up + Math.min(cursor.col, rc.down - 1)];
+  }
+
+  function refreshCursor() {
+    state.cells.forEach(function (c) { c.wrap.classList.remove('cursor'); });
+    var cell = cursorCell();
+    if (cell) cell.wrap.classList.add('cursor');
+  }
+
+  function moveCursor(dRow, dCol) {
+    var rc = rowCounts();
+    cursor.row = Math.max(0, Math.min(1, cursor.row + dRow));
+    var max = cursor.row === 0 ? rc.up : rc.down;
+    cursor.col = Math.max(0, Math.min(max - 1, cursor.col + dCol));
+    refreshCursor();
   }
 
   function bite() {
@@ -247,14 +279,25 @@
     if (!wrap) return;
     var cell = state.cells.filter(function (c) { return c.wrap === wrap; })[0];
     pressCell(cell);
-    if (e.type === 'click' && wrap.blur) wrap.blur();
+    if (e.type === 'click') {
+      if (wrap.blur) wrap.blur();
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    }
     e.preventDefault();
   }
 
   croc.addEventListener('click', onToothActivate);
-  croc.addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
-    onToothActivate(e);
+
+  stage.addEventListener('keydown', function (e) {
+    var k = e.key;
+    if (k === 'ArrowLeft') { moveCursor(0, -1); e.preventDefault(); return; }
+    if (k === 'ArrowRight') { moveCursor(0, 1); e.preventDefault(); return; }
+    if (k === 'ArrowUp') { moveCursor(-1, 0); e.preventDefault(); return; }
+    if (k === 'ArrowDown') { moveCursor(1, 0); e.preventDefault(); return; }
+    if (k === 'Enter' || k === ' ' || k === 'Spacebar') {
+      pressCell(cursorCell());
+      e.preventDefault();
+    }
   });
 
   teethSeg.addEventListener('click', function (e) {

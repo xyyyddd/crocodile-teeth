@@ -103,31 +103,31 @@
         </div>
       </div>
 
-      <div class="stage" id="stage">
+      <div class="stage" id="stage" tabindex="0" aria-label="鳄鱼嘴巴，点牙齿或按方向键选择后回车">
         <div class="stage-hint" id="stageHint">上下两排都能按 · 想按几颗按几颗</div>
 
         <svg id="croc" class="croc" viewBox="0 0 700 470" role="img" aria-label="张嘴的卡通鳄鱼">
           <defs>
             <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A6EC80"/><stop offset="0.45" stop-color="#69CB5D"/><stop offset="1" stop-color="#3E9944"/>
+              <stop offset="0" stop-color="#C6F5A2"/><stop offset="0.45" stop-color="#8BE078"/><stop offset="1" stop-color="#5CC263"/>
             </linearGradient>
             <linearGradient id="gLower" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#8CDB7A"/><stop offset="0.55" stop-color="#5FB457"/><stop offset="1" stop-color="#459246"/>
+              <stop offset="0" stop-color="#A9E995"/><stop offset="0.55" stop-color="#79CE6E"/><stop offset="1" stop-color="#5BB45C"/>
             </linearGradient>
             <linearGradient id="gNeck" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#7ACB68"/><stop offset="1" stop-color="#4A9445"/>
+              <stop offset="0" stop-color="#9BE084"/><stop offset="1" stop-color="#63BB60"/>
             </linearGradient>
             <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#B4524A"/><stop offset="0.5" stop-color="#7A2320"/><stop offset="1" stop-color="#420C0A"/>
+              <stop offset="0" stop-color="#FFB3AC"/><stop offset="0.5" stop-color="#F08079"/><stop offset="1" stop-color="#D25E59"/>
             </linearGradient>
             <linearGradient id="gTongue" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FFA79C"/><stop offset="1" stop-color="#EF6B6A"/>
+              <stop offset="0" stop-color="#FFC9C2"/><stop offset="1" stop-color="#F8908C"/>
             </linearGradient>
             <linearGradient id="gTooth" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.72" stop-color="#F8FFFA"/><stop offset="1" stop-color="#DDEFE3"/>
             </linearGradient>
             <linearGradient id="gBelly" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#F2FDDA"/><stop offset="1" stop-color="#CEEAA6"/>
+              <stop offset="0" stop-color="#FBFFEE"/><stop offset="1" stop-color="#DDF3BC"/>
             </linearGradient>
             <linearGradient id="gEye" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#FFEFAE"/><stop offset="1" stop-color="#EFB43A"/>
@@ -156,7 +156,7 @@
 
             <!-- 口腔 -->
             <path class="mouth" d="M470 248 C400 240 258 220 112 212 C88 209 72 218 72 238 L76 340 C77 358 90 366 110 362 C262 346 400 318 470 296 Z"/>
-            <path class="throat" d="M470 248 C440 244 408 240 386 238 L392 330 C420 326 448 308 470 296 Z"/>
+            <path class="throat" d="M470 248 C440 244 408 240 386 238 L392 330 C420 326 448 308 470 296 Z" opacity="0.55"/>
           </g>
 
           <!-- 上颚 -->
@@ -164,11 +164,11 @@
             <path class="jaw-up" d="M470 166 C430 142 340 132 210 134 C126 136 62 148 44 172 C34 184 36 196 48 206 C76 228 148 238 226 242 L400 246 C440 247 468 240 484 224 L486 190 C486 178 478 170 470 166 Z"/>
             <path class="rim" d="M74 176 C124 149 224 141 322 143 C380 144 430 151 466 169"/>
             <g class="scutes">
-              <path d="M150 140 C156 127 170 127 176 140 Z"/>
-              <path d="M198 136 C204 123 218 123 224 136 Z"/>
-              <path d="M246 134 C252 121 266 121 272 134 Z"/>
-              <path d="M294 133 C300 120 314 120 320 133 Z"/>
-              <path d="M342 133 C348 120 362 120 368 133 Z"/>
+              <ellipse cx="163" cy="136" rx="15" ry="10"/>
+              <ellipse cx="211" cy="132" rx="15" ry="10"/>
+              <ellipse cx="259" cy="130" rx="15" ry="10"/>
+              <ellipse cx="307" cy="129" rx="15" ry="10"/>
+              <ellipse cx="355" cy="129" rx="15" ry="10"/>
             </g>
             <ellipse class="nostril-bump" cx="80" cy="162" rx="31" ry="21"/>
             <path class="nostril" d="M70 158 C77 152 87 153 90 160 C83 165 74 163 70 158 Z"/>
@@ -204,17 +204,18 @@
               <ellipse cx="636" cy="278" rx="8" ry="5"/><ellipse cx="598" cy="306" rx="8" ry="5"/>
             </g>
             <g class="scutes">
-              <path d="M600 60 C606 44 622 44 628 60 Z"/>
-              <path d="M646 70 C652 54 668 54 674 70 Z"/>
-              <path d="M680 106 C686 90 700 90 700 106 Z"/>
+              <ellipse cx="614" cy="58" rx="15" ry="10"/>
+              <ellipse cx="658" cy="70" rx="15" ry="10"/>
+              <ellipse cx="686" cy="104" rx="13" ry="9"/>
             </g>
-            <ellipse class="eye-bump" cx="502" cy="106" rx="50" ry="43"/>
-            <ellipse class="eye-white" cx="496" cy="104" rx="33" ry="31"/>
-            <ellipse class="iris" cx="487" cy="106" rx="21" ry="21" fill="url(#gEye)"/>
-            <ellipse class="pupil" cx="485" cy="108" rx="7" ry="16"/>
-            <circle class="shine" cx="475" cy="93" r="7"/>
-            <circle class="shine small" cx="494" cy="120" r="4"/>
-            <path class="eyelid" d="M462 82 C482 68 516 66 538 78"/>
+            <ellipse class="eye-bump" cx="504" cy="108" rx="53" ry="46"/>
+            <ellipse class="eye-white" cx="498" cy="104" rx="39" ry="37"/>
+            <ellipse class="iris" cx="487" cy="107" rx="26" ry="26" fill="url(#gEye)"/>
+            <ellipse class="pupil" cx="484" cy="110" rx="9" ry="19"/>
+            <circle class="shine" cx="472" cy="90" r="9"/>
+            <circle class="shine small" cx="499" cy="124" r="4.5"/>
+            <path class="eyelid" d="M460 80 C482 64 518 62 542 76"/>
+            <ellipse class="blush" cx="524" cy="176" rx="24" ry="13" transform="rotate(-8 524 176)"/>
           </g>
         </svg>
 

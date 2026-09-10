@@ -140,7 +140,7 @@ strong{font-weight:600;color:var(--charcoal);}
   border:1px solid rgba(47,191,143,.25);border-radius:999px;padding:6px 14px;white-space:nowrap;
   z-index:3;pointer-events:none;
 }
-.croc{display:block;width:100%;height:auto;overflow:visible;position:relative;z-index:2;}
+.croc{display:block;width:100%;height:auto;overflow:visible;position:relative;z-index:2;user-select:none;-webkit-user-select:none;}\n.stage{outline:none;}\n.stage:focus,.stage:focus-visible{outline:none !important;}\nsvg *{outline:none !important;}
 
 /* 鳄鱼配色与描边 */
 .neck{fill:url(#gNeck);stroke:#2c6b3a;stroke-width:4;}
@@ -167,7 +167,7 @@ strong{font-weight:600;color:var(--charcoal);}
 .croc-shadow{fill:#1f5b34;opacity:.14;}
 .rim{fill:none;stroke:rgba(255,255,255,.5);stroke-width:5;stroke-linecap:round;}
 .dots ellipse{fill:#3f8c45;opacity:.22;}
-.scutes path{fill:#8bd873;stroke:#2c6b3a;stroke-width:2.4;stroke-linejoin:round;}
+.scutes ellipse{fill:#A9E98C;stroke:#2f7a38;stroke-width:2.2;}\n.blush{fill:#FFAFA3;opacity:.72;}\n.tooth-wrap.cursor .tooth{filter:drop-shadow(0 0 6px rgba(47,191,143,.95));}
 .cheek{fill:none;stroke:#3f8c45;stroke-width:4;opacity:.45;stroke-linecap:round;}
 .lip{fill:none;stroke:#2c6b3a;stroke-width:3;opacity:.5;stroke-linecap:round;}
 .eyelid{fill:none;stroke:#2c6b3a;stroke-width:5;stroke-linecap:round;opacity:.75;}
@@ -176,7 +176,7 @@ strong{font-weight:600;color:var(--charcoal);}
 /* 牙齿 */
 .tooth{
   fill:url(#gTooth);
-  stroke:rgba(70,120,80,.3);
+  stroke:rgba(80,140,95,.28);
   stroke-width:1.2;
   transform-box:fill-box;
   transform-origin:50% 0%;
@@ -268,7 +268,7 @@ strong{font-weight:600;color:var(--charcoal);}
 .croc .deco,.croc .neck,.croc .mouth,.croc .throat,.croc .tongue,.croc .skull,
 .croc .skull-gloss,.croc .scute,.croc .nostril-bump,.croc .nostril,.croc .gloss,
 .croc .belly,.croc .eye-bump,.croc .eye-white,.croc .iris,.croc .pupil,.croc .shine,
-.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes path{pointer-events:none;}
+.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes ellipse,.croc .scutes path,.croc .blush{pointer-events:none;}
 .croc{-webkit-tap-highlight-color:transparent;}
 .croc .tooth{pointer-events:none;}
 .croc .tooth-wrap{pointer-events:all;cursor:pointer;touch-action:manipulation;outline:none !important;}
