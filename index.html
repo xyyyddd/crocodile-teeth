@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>鳄鱼拔牙 - 在线双人同屏小游戏，免费玩！</title>
+
+<meta name="description" content="鳄鱼拔牙是一款双人同屏的免费在线小游戏：上下两排牙齿都能按，想按几颗按几颗，谁按到唯一的机关牙就会被鳄鱼咬住出局。打开网页即玩，手机电脑都能玩。">
+<meta name="keywords" content="鳄鱼拔牙,鳄鱼拔牙游戏,在线小游戏,双人小游戏,同屏游戏,免费小游戏,牙齿游戏">
+<meta name="author" content="xyyyddd">
+<meta name="theme-color" content="#f7f4ed">
+<link rel="canonical" href="https://xyyyddd.github.io/crocodile-teeth/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="鳄鱼拔牙">
+<meta property="og:title" content="鳄鱼拔牙 - 在线双人同屏小游戏">
+<meta property="og:description" content="上下两排牙齿都能按，谁按到机关牙谁被咬！手机电脑打开网页即玩。">
+<meta property="og:url" content="https://xyyyddd.github.io/crocodile-teeth/">
+<meta property="og:image" content="https://xyyyddd.github.io/crocodile-teeth/assets/og.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="鳄鱼拔牙 - 在线双人同屏小游戏">
+<meta name="twitter:description" content="上下两排牙齿都能按，谁按到机关牙谁被咬！">
+<meta name="twitter:image" content="https://xyyyddd.github.io/crocodile-teeth/assets/og.png">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "鳄鱼拔牙",
+  "alternateName": "Crocodile Teeth",
+  "url": "https://xyyyddd.github.io/crocodile-teeth/",
+  "description": "双人同屏的免费在线小游戏：上下两排牙齿都能按，只有一颗机关牙，按到的人被鳄鱼咬住出局。",
+  "genre": ["休闲游戏", "派对游戏"],
+  "gamePlatform": "Web Browser",
+  "playMode": "MultiPlayer",
+  "numberOfPlayers": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 2 },
+  "applicationCategory": "Game",
+  "operatingSystem": "Web",
+  "inLanguage": "zh-CN",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#game">跳到游戏</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">鳄鱼拔牙</span>
+    </a>
+    <nav class="site-nav" aria-label="页面导航">
+      <a href="#game">开始游戏</a>
+      <a href="#how">玩法说明</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <button id="soundBtn" class="ghost-btn" type="button" aria-pressed="true">🔊 音效开</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">免费在线小游戏 · 两个人一台设备就能玩</p>
+    <h1>鳄鱼拔牙<span class="dot">。</span></h1>
+    <p class="lede">
+      鳄鱼张着大嘴，嘴里藏着 <strong>一颗机关牙</strong>。上下两排牙都能按，想按几颗就按几颗——
+      但谁按到那颗机关牙，谁就会被“啪”地一声咬住。
+    </p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="#game">开始玩</a>
+      <a class="secondary-btn" href="#how">看玩法</a>
+    </div>
+  </section>
+
+  <section id="game" class="wrap game-section" aria-label="鳄鱼拔牙游戏区">
+    <div class="game-card">
+      <div class="game-toolbar">
+        <div class="tool-group" role="group" aria-label="牙齿数量">
+          <span class="tool-label">牙齿数量</span>
+          <div class="seg" id="teethSeg">
+            <button type="button" data-count="20" class="active">20 颗</button>
+            <button type="button" data-count="24">24 颗</button>
+            <button type="button" data-count="28">28 颗</button>
+          </div>
+        </div>
+        <button id="restartBtn" class="ghost-btn" type="button">↻ 重新开局</button>
+      </div>
+
+      <div class="hud" aria-live="polite">
+        <div class="hud-pill">
+          <span class="hud-label">已安全按下</span>
+          <span class="hud-value" id="safeCount">0</span>
+        </div>
+        <div class="hud-pill" id="remainPill">
+          <span class="hud-label">还能按</span>
+          <span class="hud-value" id="remainCount">20</span>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="stage-hint" id="stageHint">上下两排都能按 · 想按几颗按几颗</div>
+
+        <svg id="croc" class="croc" viewBox="0 0 700 470" role="img" aria-label="张嘴的卡通鳄鱼">
+          <defs>
+            <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8FE27A"/><stop offset="0.55" stop-color="#5FC65A"/><stop offset="1" stop-color="#429B45"/>
+            </linearGradient>
+            <linearGradient id="gNeck" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#6FBF62"/><stop offset="1" stop-color="#4C9A47"/>
+            </linearGradient>
+            <linearGradient id="gLower" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#7FD370"/><stop offset="0.6" stop-color="#5BB054"/><stop offset="1" stop-color="#4A9A48"/>
+            </linearGradient>
+            <linearGradient id="gBelly" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#EDFBD2"/><stop offset="1" stop-color="#CFEBA8"/>
+            </linearGradient>
+            <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#A5473C"/><stop offset="0.55" stop-color="#75201C"/><stop offset="1" stop-color="#4A0F0C"/>
+            </linearGradient>
+            <linearGradient id="gTongue" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FF9E93"/><stop offset="1" stop-color="#F16A69"/>
+            </linearGradient>
+            <linearGradient id="gTooth" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.7" stop-color="#F7FFF8"/><stop offset="1" stop-color="#E1F2E6"/>
+            </linearGradient>
+            <linearGradient id="gScale" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#A6EB84"/><stop offset="1" stop-color="#77D06A"/>
+            </linearGradient>
+            <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1F5B34" flood-opacity="0.22"/>
+            </filter>
+            <filter id="fTooth" x="-60%" y="-60%" width="220%" height="220%">
+              <feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#2C5C33" flood-opacity="0.35"/>
+            </filter>
+          </defs>
+
+          <!-- 装饰：水面泡泡 + 荷叶 -->
+          <g class="deco" aria-hidden="true">
+            <ellipse class="lily" cx="96" cy="404" rx="52" ry="20"/>
+            <ellipse class="lily" cx="622" cy="392" rx="44" ry="17"/>
+            <circle class="bubble-d" cx="140" cy="120" r="12"/>
+            <circle class="bubble-d" cx="600" cy="150" r="9"/>
+            <circle class="bubble-d" cx="520" cy="86" r="7"/>
+          </g>
+
+          <g filter="url(#fSoft)">
+            <!-- 身体 / 脖子 -->
+            <path class="neck" d="M452 156 C520 122 616 132 668 182 C692 214 694 320 686 470 L470 470 C492 396 486 322 466 278 C452 244 446 194 452 156 Z"/>
+
+            <!-- 口腔（深色开口） -->
+            <path class="mouth" d="M470 248 C400 240 258 220 112 212 C88 209 72 218 72 238 L76 340 C77 358 90 366 110 362 C262 346 400 318 470 296 Z"/>
+            <!-- 喉咙阴影 -->
+            <path class="throat" d="M470 248 C440 244 408 240 386 238 L392 330 C420 326 448 308 470 296 Z"/>
+          </g>
+
+          <!-- 上颚（咬合时转动） -->
+          <g id="upperJaw" class="upper-jaw">
+            <path class="jaw-up" d="M470 168 C432 146 336 138 202 138 C122 138 60 146 42 168 C32 180 33 192 45 202 C74 226 146 238 224 242 L400 246 C440 247 468 240 484 224 L486 190 C486 180 479 172 470 168 Z"/>
+            <!-- 上颚高光 -->
+            <path class="gloss" d="M92 160 C170 150 300 148 420 152 C360 158 200 160 92 160 Z"/>
+            <!-- 鼻孔隆起 -->
+            <ellipse class="nostril-bump" cx="80" cy="152" rx="28" ry="19"/>
+            <ellipse class="nostril" cx="78" cy="152" rx="8" ry="5"/>
+            <!-- 上颚脊 -->
+            <ellipse class="scute" cx="168" cy="136" rx="18" ry="11"/>
+            <ellipse class="scute" cx="218" cy="133" rx="18" ry="11"/>
+            <ellipse class="scute" cx="268" cy="131" rx="18" ry="11"/>
+            <ellipse class="scute" cx="318" cy="130" rx="18" ry="11"/>
+            <ellipse class="scute" cx="368" cy="130" rx="18" ry="11"/>
+            <g id="upperTeeth"></g>
+          </g>
+
+          <!-- 舌头（画在下颚之前，避免挡住牙齿的点击） -->
+          <path class="tongue" d="M164 320 C240 312 330 308 416 316 C398 342 320 356 244 352 C196 349 170 338 164 320 Z"/>
+
+          <!-- 下颚 -->
+          <g id="lowerJaw" class="lower-jaw">
+            <path class="jaw-low" d="M482 300 C430 290 300 304 172 318 C120 324 84 330 78 346 C74 362 80 388 102 398 C172 424 300 428 382 420 C442 414 484 394 494 366 L494 330 C494 314 490 306 482 300 Z"/>
+            <path class="belly" d="M96 402 C180 424 320 424 470 396 L476 404 C440 428 320 438 190 428 C140 424 106 414 96 402 Z"/>
+            <ellipse class="scute" cx="300" cy="322" rx="16" ry="9"/>
+            <ellipse class="scute" cx="352" cy="318" rx="16" ry="9"/>
+            <ellipse class="scute" cx="404" cy="315" rx="16" ry="9"/>
+            <g id="lowerTeeth"></g>
+          </g>
+
+
+          <!-- 头骨 + 眼睛 -->
+          <g id="head" class="head">
+            <path class="skull" d="M436 150 C440 96 494 54 566 56 C640 58 690 112 694 186 C698 268 640 330 560 334 C506 336 462 302 448 254 C438 216 430 180 436 150 Z"/>
+            <path class="skull-gloss" d="M494 92 C556 72 622 84 660 122 C600 96 520 96 494 92 Z"/>
+            <ellipse class="scute" cx="618" cy="62" rx="20" ry="12"/>
+            <ellipse class="scute" cx="666" cy="84" rx="20" ry="12"/>
+            <ellipse class="scute" cx="686" cy="132" rx="18" ry="11"/>
+            <ellipse class="eye-bump" cx="500" cy="106" rx="48" ry="41"/>
+            <ellipse class="eye-white" cx="494" cy="104" rx="31" ry="29"/>
+            <ellipse class="iris" cx="486" cy="106" rx="20" ry="20"/>
+            <ellipse class="pupil" cx="484" cy="108" rx="7" ry="15"/>
+            <circle class="shine" cx="474" cy="94" r="6"/>
+            <circle class="shine small" cx="492" cy="118" r="3.5"/>
+            <path class="brow" d="M456 78 C480 62 516 62 540 76" />
+          </g>
+        </svg>
+
+        <div class="bite-text" id="biteText" aria-hidden="true">啊呜——咬住啦！</div>
+        <div class="flash" id="flash" aria-hidden="true"></div>
+      </div>
+
+      <p class="stage-tip" id="tip">点牙齿就能按：上下两排都可以按，按完安全就换对方。谁按到机关牙谁出局。</p>
+
+      <div class="result-mask" id="resultMask" hidden>
+        <div class="result-card" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+          <h2 id="resultTitle">😵 被咬啦！</h2>
+          <p>按到机关牙的朋友出局啦～<br>下一局换 TA 先手，勇敢一点！</p>
+          <p class="result-stat">本局一共按了 <span id="resultCount">0</span> 颗牙</p>
+          <div class="result-actions">
+            <button id="againBtn" class="primary-btn" type="button">再来一局</button>
+            <button id="topBtn" class="secondary-btn" type="button">回到顶部</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="wrap section">
+    <h2>怎么玩：鳄鱼拔牙规则</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>1. 两个人，一台设备</h3>
+        <p>不用注册、不用分账号。两个人共用一台手机或电脑，谁拿着设备谁操作，按完觉得安全就把设备交给对方。</p>
+      </article>
+      <article class="card">
+        <h3>2. 上下两排牙都能按</h3>
+        <p>鳄鱼嘴里藏着唯一一颗“机关牙”。上排和下排的牙齿都能点，一次按几颗都行，按得越多越刺激。</p>
+      </article>
+      <article class="card">
+        <h3>3. 按到机关牙就出局</h3>
+        <p>安全牙被按下去就消失了；一旦有人按到机关牙，鳄鱼的嘴巴会“啪”地合上，把手指咬住，这个人本局判负。</p>
+      </article>
+      <article class="card">
+        <h3>4. 目标：把对方送进鳄鱼嘴里</h3>
+        <p>坚持按掉更多安全牙、把风险留给对方，就是这个小游戏的乐趣。每局机关牙都会重新随机。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq" class="wrap section">
+    <h2>常见问题</h2>
+    <details>
+      <summary>鳄鱼拔牙可以在手机上玩吗？</summary>
+      <p>可以。这个网页版针对手机做了适配，用手指点牙齿即可，也支持电脑鼠标操作，两个人凑在一台设备前就能玩。</p>
+    </details>
+    <details>
+      <summary>这个游戏收费吗？有广告或者道具吗？</summary>
+      <p>完全免费。游戏内没有充值、没有虚拟货币、没有商城、没有兑换码、没有会员、没有道具，也没有广告弹窗，打开网页就能玩。</p>
+    </details>
+    <details>
+      <summary>每局有多少颗牙？机关牙是固定的吗？</summary>
+      <p>默认整嘴 20 颗牙（上排 10 颗、下排 10 颗），也可以切换 24 颗或 28 颗。机关牙每局都会在所有牙齿里重新随机，所以每局都不一样。</p>
+    </details>
+    <details>
+      <summary>最多几个人一起玩？</summary>
+      <p>按玩法设计是两个人同屏轮流玩。因为没有回合提示，多人聚会时也可以自行约定顺序。</p>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>🐊 鳄鱼拔牙 · 免费在线小游戏</p>
+    <p class="footer-sub">用浏览器打开就能玩，无需下载安装。</p>
+  </div>
+</footer>
+
+<script src="game.js"></script>
+</body>
+</html>

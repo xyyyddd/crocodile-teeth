@@ -1,0 +1,279 @@
+/* =========================================================
+   鳄鱼拔牙 · 网页版逻辑
+   规则：上下两排牙都能按；想按几颗按几颗；只有一颗机关牙，
+        按到的人被咬出局。没有回合、没有玩家编号。
+   ========================================================= */
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  var upperTeethGroup = document.getElementById('upperTeeth');
+  var lowerTeethGroup = document.getElementById('lowerTeeth');
+  var croc = document.getElementById('croc');
+  var stage = document.getElementById('stage');
+  var stageHint = document.getElementById('stageHint');
+  var safeCountEl = document.getElementById('safeCount');
+  var remainCountEl = document.getElementById('remainCount');
+  var remainPill = document.getElementById('remainPill');
+  var biteText = document.getElementById('biteText');
+  var flash = document.getElementById('flash');
+  var resultMask = document.getElementById('resultMask');
+  var resultCount = document.getElementById('resultCount');
+  var teethSeg = document.getElementById('teethSeg');
+  var restartBtn = document.getElementById('restartBtn');
+  var soundBtn = document.getElementById('soundBtn');
+  var againBtn = document.getElementById('againBtn');
+  var topBtn = document.getElementById('topBtn');
+
+  // 上颚下缘（牙根所在线）与下颚上缘（牙根所在线）
+  var UPPER_LIP = { x1: 84, y1: 214, x2: 448, y2: 242 };
+  var LOWER_LIP = { x1: 96, y1: 340, x2: 460, y2: 306 };
+
+  var state = {
+    total: 20,
+    cells: [],
+    trapIndex: -1,
+    phase: 'idle',
+    pressed: 0,
+    safe: 0
+  };
+
+  /* ---------------- 音效 ---------------- */
+  var audioCtx = null;
+  var soundOn = true;
+
+  function ensureAudio() {
+    if (!soundOn) return null;
+    try {
+      if (!audioCtx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        audioCtx = new AC();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    } catch (e) { return null; }
+  }
+
+  function tone(freq, to, dur, type, gain) {
+    var ctx = ensureAudio();
+    if (!ctx) return;
+    var osc = ctx.createOscillator();
+    var g = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    if (to) osc.frequency.exponentialRampToValueAtTime(to, ctx.currentTime + dur);
+    g.gain.setValueAtTime(gain || 0.05, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + dur + 0.02);
+  }
+
+  function playClick() { tone(760, 520, 0.07, 'triangle', 0.05); }
+  function playChomp() {
+    tone(180, 60, 0.26, 'square', 0.09);
+    setTimeout(function () { tone(90, 45, 0.3, 'sawtooth', 0.07); }, 40);
+  }
+
+  /* ---------------- 建牙 ---------------- */
+  function toothPath(w, h, pointsDown) {
+    var d = '';
+    if (pointsDown) {
+      d = 'M ' + (-w / 2) + ' 0 C ' + (-w / 2) + ' ' + (h * 0.45) + ', ' + (-w * 0.22) + ' ' + (h * 0.86) + ', 0 ' + h +
+          ' C ' + (w * 0.22) + ' ' + (h * 0.86) + ', ' + (w / 2) + ' ' + (h * 0.45) + ', ' + (w / 2) + ' 0 Z';
+    } else {
+      d = 'M ' + (-w / 2) + ' 0 C ' + (-w / 2) + ' ' + (-h * 0.45) + ', ' + (-w * 0.22) + ' ' + (-h * 0.86) + ', 0 ' + (-h) +
+          ' C ' + (w * 0.22) + ' ' + (-h * 0.86) + ', ' + (w / 2) + ' ' + (-h * 0.45) + ', ' + (w / 2) + ' 0 Z';
+    }
+    return d;
+  }
+
+  function clearTeeth() {
+    upperTeethGroup.innerHTML = '';
+    lowerTeethGroup.innerHTML = '';
+  }
+
+  function buildRow(group, count, lip, pointsDown, label) {
+    var half = Math.max(1, Math.round(state.total / 2));
+    var perRow = group === upperTeethGroup ? half : (state.total - half);
+    if (count !== perRow) count = perRow;
+
+    var dx = lip.x2 - lip.x1;
+    var dy = lip.y2 - lip.y1;
+    var angle = Math.atan2(dy, dx) * 180 / Math.PI;
+    var w = Math.max(20, Math.min(34, 420 / count * 0.86));
+    var h = Math.max(28, Math.min(48, w * 1.45));
+    var span = 0.06 + 0.88;              // 牙根分布范围（相对唇角）
+    var step = (dx * 0.88) / Math.max(1, count - 1);
+    var hitW = Math.max(w + 6, Math.abs(step) * 0.98);
+
+    for (var i = 0; i < count; i++) {
+      var t = count > 1 ? i / (count - 1) : 0;
+      var tt = 0.06 + t * 0.88;          // 两端各留余量
+      var x = lip.x1 + dx * tt;
+      var y = lip.y1 + dy * tt;
+
+      var g = document.createElementNS(SVG_NS, 'g');
+      g.setAttribute('class', 'tooth-wrap' + (pointsDown ? '' : ' down'));
+      g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + angle.toFixed(2) + ')');
+      g.setAttribute('role', 'button');
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('aria-label', label + '第 ' + (i + 1) + ' 颗牙');
+
+      // 透明整格点击区（手机上更好点）
+      var hit = document.createElementNS(SVG_NS, 'rect');
+      hit.setAttribute('class', 'hit');
+      hit.setAttribute('x', (-hitW / 2).toFixed(1));
+      hit.setAttribute('width', hitW.toFixed(1));
+      if (pointsDown) {
+        hit.setAttribute('y', (-14).toFixed(1));
+        hit.setAttribute('height', (h + 26).toFixed(1));
+      } else {
+        hit.setAttribute('y', (-h - 14).toFixed(1));
+        hit.setAttribute('height', (h + 26).toFixed(1));
+      }
+      g.appendChild(hit);
+
+      var path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('class', 'tooth' + (pointsDown ? '' : ' down'));
+      path.setAttribute('d', toothPath(w, h, pointsDown));
+      if (pointsDown) path.setAttribute('filter', 'url(#fTooth)');
+      g.appendChild(path);
+      group.appendChild(g);
+
+      state.cells.push({ el: path, wrap: g, index: state.cells.length, pressed: false, pointsDown: pointsDown });
+    }
+  }
+
+  /* ---------------- 开始一局 ---------------- */
+  function applyViewBox() {
+    var stageW = stage.clientWidth || window.innerWidth;
+    if (stageW < 520) {
+      // 手机：拉近到头部与嘴巴，牙齿更大更好点
+      croc.setAttribute('viewBox', '18 46 500 386');
+    } else {
+      croc.setAttribute('viewBox', '0 0 700 470');
+    }
+  }
+
+  function startRound() {
+    clearTeeth();
+    state.cells = [];
+    state.pressed = 0;
+    state.safe = 0;
+    state.phase = 'playing';
+
+    croc.classList.remove('bitten');
+    stage.classList.remove('shake');
+    biteText.classList.remove('show');
+    flash.classList.remove('show');
+    resultMask.hidden = true;
+
+    buildRow(upperTeethGroup, 0, UPPER_LIP, true, '上排');
+    buildRow(lowerTeethGroup, 0, LOWER_LIP, false, '下排');
+
+    // 机关牙随机落在任意一颗牙上
+    state.trapIndex = Math.floor(Math.random() * state.cells.length);
+
+    updateHud();
+    stageHint.textContent = '上下两排都能按 · 想按几颗按几颗';
+  }
+
+  /* ---------------- 交互 ---------------- */
+  function pressCell(cell) {
+    if (!cell || state.phase !== 'playing' || cell.pressed) return;
+    cell.pressed = true;
+    state.pressed++;
+
+    var isTrap = cell.index === state.trapIndex;
+    if (isTrap) {
+      // 机关牙：先显示被按下去的反馈，再合嘴
+      cell.el.classList.add('pressed');
+      cell.wrap.classList.add('pressed');
+      bite();
+    } else {
+      state.safe++;
+      cell.el.classList.add('pressed', 'pop');
+      cell.wrap.classList.add('pressed');
+      playClick();
+      if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
+      updateHud();
+    }
+  }
+
+  function bite() {
+    state.phase = 'bite';
+    playChomp();
+    if (navigator.vibrate) { try { navigator.vibrate([40, 60, 90]); } catch (e) {} }
+    stage.classList.add('shake');
+    flash.classList.add('show');
+    croc.classList.add('bitten');
+    biteText.classList.add('show');
+    updateHud();
+
+    setTimeout(function () {
+      resultCount.textContent = state.pressed;
+      resultMask.hidden = false;
+      state.phase = 'result';
+    }, 900);
+  }
+
+  function updateHud() {
+    var remaining = state.cells.length - state.pressed;
+    safeCountEl.textContent = state.safe;
+    remainCountEl.textContent = remaining;
+    var low = remaining <= 4 && state.phase !== 'result';
+    remainPill.classList.toggle('low', low);
+    if (state.phase === 'playing') {
+      stageHint.textContent = low
+        ? ('💓 只剩 ' + remaining + ' 颗，心跳加速…')
+        : '上下两排都能按 · 想按几颗按几颗';
+    }
+  }
+
+  /* ---------------- 事件绑定 ---------------- */
+  function onToothActivate(e) {
+    var wrap = e.target.closest ? e.target.closest('.tooth-wrap') : null;
+    if (!wrap) return;
+    var cell = state.cells.filter(function (c) { return c.wrap === wrap; })[0];
+    pressCell(cell);
+    e.preventDefault();
+  }
+
+  croc.addEventListener('click', onToothActivate);
+  croc.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    onToothActivate(e);
+  });
+
+  teethSeg.addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    Array.prototype.forEach.call(teethSeg.querySelectorAll('button'), function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    state.total = Number(btn.getAttribute('data-count'));
+    startRound();
+  });
+
+  restartBtn.addEventListener('click', function () { ensureAudio(); startRound(); });
+  againBtn.addEventListener('click', function () { ensureAudio(); startRound(); });
+  topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  soundBtn.addEventListener('click', function () {
+    soundOn = !soundOn;
+    soundBtn.textContent = soundOn ? '🔊 音效开' : '🔇 音效关';
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    if (soundOn) { ensureAudio(); playClick(); }
+  });
+
+  // 首次交互时解锁音频（浏览器自动播放策略）
+  window.addEventListener('pointerdown', function once() {
+    ensureAudio();
+    window.removeEventListener('pointerdown', once);
+  }, { once: true });
+
+  applyViewBox();
+  window.addEventListener('resize', applyViewBox);
+  startRound();
+})();
