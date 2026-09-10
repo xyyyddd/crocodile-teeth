@@ -28,8 +28,8 @@
 
   // 上颚下缘（牙根所在线）与下颚上缘（牙根所在线）
   // 上颚下缘 / 下颚上缘（牙齿严格长在这两条线上）
-  var UPPER_LIP = { x1: 178, y1: 231, x2: 452, y2: 241 };
-  var LOWER_LIP = { x1: 178, y1: 328, x2: 452, y2: 300 };
+  var UPPER_LIP = { x1: 178, y1: 231, x2: 452, y2: 231 };
+  var LOWER_LIP = { x1: 180, y1: 330, x2: 452, y2: 318 };
 
   var state = {
     total: 20,
@@ -129,8 +129,8 @@
       hit.setAttribute('x', (-hitW / 2).toFixed(1));
       hit.setAttribute('width', hitW.toFixed(1));
       // 点击区覆盖整颗牙（下排牙整体旋转 180°，所以统一用同一段局部坐标）
-      hit.setAttribute('y', (-18).toFixed(1));
-      hit.setAttribute('height', (h + 36).toFixed(1));
+      hit.setAttribute('y', (-8).toFixed(1));
+      hit.setAttribute('height', (h + 16).toFixed(1));
       g.appendChild(hit);
 
       var dimple = document.createElementNS(SVG_NS, 'ellipse');
