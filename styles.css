@@ -151,6 +151,7 @@ strong{font-weight:600;color:var(--charcoal);}
 .skull{fill:url(#gBody);stroke:#4f9f4e;stroke-width:4;}
 .rim{fill:none;stroke:rgba(255,255,255,.6);stroke-width:7;stroke-linecap:round;}
 .dots ellipse{fill:#4FAE55;opacity:.16;}
+.eye-bump{fill:#A9E98F;stroke:none;}
 .eye-white{fill:#ffffff;}
 .iris{fill:url(#gEye);}
 .pupil{fill:#241a08;}
