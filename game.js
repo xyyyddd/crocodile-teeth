@@ -27,8 +27,8 @@
   var topBtn = document.getElementById('topBtn');
 
   // 上颚下缘（牙根所在线）与下颚上缘（牙根所在线）
-  var UPPER_LIP = { x1: 84, y1: 214, x2: 448, y2: 242 };
-  var LOWER_LIP = { x1: 96, y1: 340, x2: 460, y2: 306 };
+  var UPPER_LIP = { x1: 212, y1: 302, x2: 488, y2: 302 };
+  var LOWER_LIP = { x1: 212, y1: 412, x2: 488, y2: 412 };
 
   var state = {
     total: 20,
@@ -88,7 +88,7 @@
           ' L ' + half + ' 0 Z';
     } else {
       d = 'M ' + (-half) + ' 0 L ' + (-half) + ' ' + (-round) +
-          ' A ' + half + ' ' + (h - round) + ' 0 0 0 ' + half + ' ' + (-round) +
+          ' A ' + half + ' ' + (h - round) + ' 0 0 1 ' + half + ' ' + (-round) +
           ' L ' + half + ' 0 Z';
     }
     return d;
@@ -107,16 +107,14 @@
     var dx = lip.x2 - lip.x1;
     var dy = lip.y2 - lip.y1;
     var angle = Math.atan2(dy, dx) * 180 / Math.PI;
-    var w = Math.max(20, Math.min(34, 420 / count * 0.86));
-    var h = Math.max(28, Math.min(48, w * 1.45));
-    var span = 0.06 + 0.88;              // 牙根分布范围（相对唇角）
+    var w = Math.max(19, Math.min(30, 300 / count * 0.86));
+    var h = Math.max(26, Math.min(46, w * 1.5));
     var step = (dx * 0.88) / Math.max(1, count - 1);
-    var hitW = Math.max(w + 6, Math.abs(step) * 0.98);
+    var hitW = Math.max(w + 8, Math.abs(step) * 1.0);
 
     for (var i = 0; i < count; i++) {
       var t = count > 1 ? i / (count - 1) : 0;
-      var tMax = pointsDown ? 0.92 : 0.84;   // 下排右侧避开头部，避免被挡
-      var tt = 0.07 + t * tMax;
+      var tt = 0.06 + t * 0.88;   // 上下两排对称分布
       var x = lip.x1 + dx * tt;
       var y = lip.y1 + dy * tt;
 
@@ -162,7 +160,7 @@
     var stageW = stage.clientWidth || window.innerWidth;
     if (stageW < 520) {
       // 手机：拉近到头部与嘴巴，牙齿更大更好点
-      croc.setAttribute('viewBox', '18 46 500 386');
+      croc.setAttribute('viewBox', '150 96 400 356');
     } else {
       croc.setAttribute('viewBox', '0 0 700 470');
     }

@@ -142,35 +142,30 @@ strong{font-weight:600;color:var(--charcoal);}
 }
 .croc{display:block;width:100%;height:auto;overflow:visible;position:relative;z-index:2;user-select:none;-webkit-user-select:none;}\n.stage{outline:none;}\n.stage:focus,.stage:focus-visible{outline:none !important;}\nsvg *{outline:none !important;}
 
-/* 鳄鱼配色与描边 */
-.neck{fill:url(#gNeck);stroke:#2c6b3a;stroke-width:4;}
-.mouth{fill:url(#gMouth);}
-.throat{fill:#3d0a09;opacity:.9;}
-.jaw-up{fill:url(#gBody);stroke:#2c6b3a;stroke-width:4;}
-.jaw-low{fill:url(#gLower);stroke:#2c6b3a;stroke-width:4;}
-.belly{fill:url(#gBelly);opacity:.95;}
-.gloss{fill:rgba(255,255,255,.5);}
-.skull{fill:url(#gBody);stroke:#2c6b3a;stroke-width:4;}
-.skull-gloss{fill:rgba(255,255,255,.42);}
-.scute{fill:#8bd873;stroke:#2c6b3a;stroke-width:2.5;}
-.nostril-bump{fill:#9de07c;stroke:#2c6b3a;stroke-width:3;}
-.nostril{fill:#2a4a22;}
-.tongue{fill:url(#gTongue);}
-.eye-bump{fill:#9de07c;stroke:#2c6b3a;stroke-width:3;}
-.eye-white{fill:#fff;stroke:#3a4a2a;stroke-width:2.5;}
-.iris{fill:#f6c744;}
+/* 鳄鱼配色与描边（Q版正面大头） */
+.body{fill:url(#gBody);stroke:#4f9f4e;stroke-width:3.5;}
+.belly{fill:url(#gBelly);}
+.foot{fill:#8FDD7B;stroke:#4f9f4e;stroke-width:3.5;}
+.tail{fill:#8FDD7B;stroke:#4f9f4e;stroke-width:3.5;}
+.tail-scute{fill:#A9E98F;stroke:#4f9f4e;stroke-width:2.5;}
+.skull{fill:url(#gBody);stroke:#4f9f4e;stroke-width:4;}
+.rim{fill:none;stroke:rgba(255,255,255,.6);stroke-width:7;stroke-linecap:round;}
+.dots ellipse{fill:#4FAE55;opacity:.16;}
+.eye-white{fill:#ffffff;}
+.iris{fill:url(#gEye);}
 .pupil{fill:#241a08;}
-.shine{fill:#fff;}
-.shine.small{opacity:.85;}
-.brow{fill:none;stroke:#2c6b3a;stroke-width:5;stroke-linecap:round;opacity:.55;}
+.shine{fill:#ffffff;}
+.eyelid{fill:none;stroke:#4f9f4e;stroke-width:5;stroke-linecap:round;opacity:.5;}
+.blush{fill:#FFA9A0;opacity:.75;}
+.nostril-bump{fill:#A6EF8C;}
+.nostril{fill:#3F6B3A;opacity:.75;}
+.mouth{fill:url(#gMouth);}
+.throat{fill:#E0796F;}
+.tongue{fill:url(#gTongue);}
+.jaw-up{fill:url(#gBody);stroke:#4f9f4e;stroke-width:4;}
+.jaw-low{fill:url(#gLower);stroke:#4f9f4e;stroke-width:4;}
+.croc-shadow{fill:#1f5b34;opacity:.12;}
 .deco .lily{fill:#9be0b1;opacity:.75;}
-.croc-shadow{fill:#1f5b34;opacity:.14;}
-.rim{fill:none;stroke:rgba(255,255,255,.5);stroke-width:5;stroke-linecap:round;}
-.dots ellipse{fill:#3f8c45;opacity:.22;}
-.scutes ellipse{fill:#A9E98C;stroke:#2f7a38;stroke-width:2.2;}\n.blush{fill:#FFAFA3;opacity:.72;}\n.tooth-wrap.cursor .tooth{filter:drop-shadow(0 0 6px rgba(47,191,143,.95));}
-.cheek{fill:none;stroke:#3f8c45;stroke-width:4;opacity:.45;stroke-linecap:round;}
-.lip{fill:none;stroke:#2c6b3a;stroke-width:3;opacity:.5;stroke-linecap:round;}
-.eyelid{fill:none;stroke:#2c6b3a;stroke-width:5;stroke-linecap:round;opacity:.75;}
 .deco .bubble-d{fill:#fff;opacity:.65;}
 
 /* 牙齿 */
@@ -189,9 +184,10 @@ strong{font-weight:600;color:var(--charcoal);}
 .tooth-wrap.pressed .dimple{opacity:.5;}
 
 /* 咬合动画 */
-.upper-jaw{transform-box:view-box;transform-origin:480px 205px;transition:transform .18s cubic-bezier(.65,-.2,.35,1.3);}
-.croc.bitten .upper-jaw{transform:rotate(-25deg);}
-.croc.bitten .mouth,.croc.bitten .tongue{opacity:.25;transition:opacity .15s ease;}
+.upper-jaw{transform-box:view-box;transition:transform .2s cubic-bezier(.55,-.1,.35,1.25);}
+.croc.bitten .upper-jaw{transform:translateY(94px);}
+.croc.bitten .mouth{opacity:.5;transition:opacity .18s ease;}
+.croc.bitten .tongue{opacity:.55;transition:opacity .18s ease;}
 
 .stage.shake{animation:shake .45s cubic-bezier(.36,.07,.19,.97);}
 @keyframes shake{
@@ -268,7 +264,7 @@ strong{font-weight:600;color:var(--charcoal);}
 .croc .deco,.croc .neck,.croc .mouth,.croc .throat,.croc .tongue,.croc .skull,
 .croc .skull-gloss,.croc .scute,.croc .nostril-bump,.croc .nostril,.croc .gloss,
 .croc .belly,.croc .eye-bump,.croc .eye-white,.croc .iris,.croc .pupil,.croc .shine,
-.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes ellipse,.croc .scutes path,.croc .blush{pointer-events:none;}
+.croc .body,.croc .belly,.croc .foot,.croc .tail,.croc .tail-scute,.croc .brow,.croc .jaw-up,.croc .jaw-low,.croc .croc-shadow,.croc .rim,.croc .cheek,.croc .lip,.croc .eyelid,.croc .dots ellipse,.croc .scutes ellipse,.croc .scutes path,.croc .blush,.croc .iris,.croc .pupil,.croc .shine,.croc .eye-white,.croc .nostril-bump,.croc .nostril,.croc .throat,.croc .mouth,.croc .tongue{pointer-events:none;}
 .croc{-webkit-tap-highlight-color:transparent;}
 .croc .tooth{pointer-events:none;}
 .croc .tooth-wrap{pointer-events:all;cursor:pointer;touch-action:manipulation;outline:none !important;}
